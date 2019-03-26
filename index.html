@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="UTF-8">
+   <title>Hello, world</title>
+   <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+   <!-- import de notre element -->
+   <link rel="import" href="src/hello-world.html">
+   <style>
+     h1 {
+       color: red;
+     }
+   </style>
+  </head>
+  <body>
+    <div>
+      <h1>Je suis une balise titre</h1>
+    </div>
+    <!-- intégration de notre élément et reutilisabilté -->
+    <hello-world who="world"></hello-world>
+    <hello-world who="patrick"></hello-world>
+  </body>
+</html>
+ 
+ 

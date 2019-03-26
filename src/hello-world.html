@@ -1,0 +1,32 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="hello-world">
+  <style>
+   h1 {
+     color: blue;
+   }
+   
+   div {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+   }
+  </style>
+  <!-- définition du template -->
+  <template>
+    <div>
+      <h1 id="titre">je suis un composant et je vous dis : hello, [[who]]</h1>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'hello-world',
+        properties: {
+          /* on définit un attribut */
+          who: {
+            type: String
+          }
+        }
+    });
+  </script>
+</dom-module>  
