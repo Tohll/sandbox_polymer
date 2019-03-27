@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="dom-component">
+  <style>
+    h1 {
+     color: green;
+     border-style: solid;
+     border-width: 1px;
+   }
+   
+   div {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+   }
+  </style>
+  <!-- définition du template -->
+  <template>
+    <div>
+      <h1>Bonjour je viens d'être ajouté [[counter]] fois</h1>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'dom-component',
+        properties: {
+          counter: {
+            type: Number,
+            value: 0
+          }
+        },
+        created: function() {
+          console.log(this.localName + ' was created');
+        },
+
+        ready: function() {
+          console.log(this.localName + ' has local DOM initialized');
+        },
+
+        attached: function() {
+          console.log(this.localName + ' was attached');
+          this.counter++;
+        },
+
+        detached: function() {
+          console.log(this.localName + ' was detached');
+        }
+    });
+  </script>
+</dom-module>  

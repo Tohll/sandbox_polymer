@@ -1,0 +1,68 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="dom-component.html">
+<dom-module id="component-attacher-detacher">
+  <style>
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    button {
+      width: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <!-- définition du template -->
+  <template>
+    <div id="box">
+      <button id="button" on-tap="_toggle">[[text]]</button>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'component-attacher-detacher',
+        properties: {
+          attached: {
+            type: Boolean,
+            value: false
+          },
+          
+          node: {
+            type: Object
+          },
+          
+          text: {
+            type: String,
+            value: 'Cliquez moi !'
+          }
+        },
+        
+        _toggle: function() {
+          /* si le composant n'est pas encore créé et placé dans la variable on fait ces actions */
+          if (this.node == null || undefined) {
+            this.node = document.createElement('dom-component');
+            /* on en profite pour définir son id html */
+            this.node.id = 'child-component';
+            console.log(this.node);
+          }
+          /* si le composant n'est pas encore attached (faux par défaut) il est attached, sinon il est detached */
+          if (!this.attached) {
+            Polymer.dom(this.$.box).appendChild(this.node);
+            this.text = 'Faites moi disparaitre !';
+            /* la valeur de la variable attached est inversé a chaque clic/tap */
+            this.attached = !this.attached;
+          } else {
+            /* Polymer.dom(this.root).querySelector('#child-component') = this.$$('#child-component') */
+            var existingNode = Polymer.dom(this.root).querySelector('#child-component');
+            Polymer.dom(this.$.box).removeChild(existingNode);
+            this.text = 'Faites moi réapparaitre !';
+            /* la valeur de la variable attached est inversé a chaque clic/tap */
+            this.attached = !this.attached;
+          }
+        }
+    });
+  </script>
+</dom-module>  
